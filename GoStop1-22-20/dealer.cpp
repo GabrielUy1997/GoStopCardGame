@@ -16,14 +16,14 @@ Dealer::~Dealer()
 Function Name: dealCard
 Purpose: Draws the card at the top of the deck and returns the string denoting the card.
 Parameters:
-			None
+		None
 Return Value: A string that represents the card at the top of the deck object
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Takes the card at the top of the deck obj
-			2) Erases the card from the vector
-			3) Returns the string representing the card
+		1) Takes the card at the top of the deck obj
+		2) Erases the card from the vector
+		3) Returns the string representing the card
 Assistance Received: None
 **********************************************************************/
 std::string Dealer::dealCard()
@@ -37,12 +37,12 @@ std::string Dealer::dealCard()
 Function Name: topCard
 Purpose: Show what the card at the top of the deck is
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Prints the card that is stored at index 0 of the roundDeck vector
+		1) Prints the card that is stored at index 0 of the roundDeck vector
 Assistance Received: None
 **********************************************************************/
 void Dealer::topCard()
@@ -54,12 +54,12 @@ void Dealer::topCard()
 Function Name: returnDeck
 Purpose: Returns the current deck so that the order of the cards are the same
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Returns the roundDeck vector
+		1) Returns the roundDeck vector
 Assistance Received: None
 **********************************************************************/
 std::vector<std::string> Dealer::returnDeck()
@@ -71,13 +71,13 @@ std::vector<std::string> Dealer::returnDeck()
 Function Name: loadDeck
 Purpose: Used to load the correct deck given by the load file
 Parameters:
-			a_deck, vector of strings passed by value. It holds the deck that was
-			read from the load file.
+		a_deck, vector of strings passed by value. It holds the deck that was
+		read from the load file.
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Assigns the roundDeck to be equal to the loaded deck using a_deck
+		1) Assigns the roundDeck to be equal to the loaded deck using a_deck
 Assistance Received: None
 **********************************************************************/
 void Dealer::loadDeck(std::vector<std::string> a_deck)

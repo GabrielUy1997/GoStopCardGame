@@ -16,14 +16,14 @@ Card::~Card()
 Function Name: generateCard
 Purpose: Used to create all the individual cards and creates a deck out of them
 Parameters:
-			None
+		None
 Return Value: A vector of strings that represent the the deck and each index is an individual card
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Makes a card with a value 1-13 to represent A-K card values and appends the suites for each value to the end of the string
-			2) Sends each card to the deck class' add to deck function
-			3) After making all the cards returns the full 104 card deck object to the dealer object 
+		1) Makes a card with a value 1-13 to represent A-K card values and appends the suites for each value to the end of the string
+		2) Sends each card to the deck class' add to deck function
+		3) After making all the cards returns the full 104 card deck object to the dealer object 
 Assistance Received: None
 **********************************************************************/
 std::vector<std::string> Card::generateCard()

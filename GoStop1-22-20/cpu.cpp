@@ -5,6 +5,19 @@ Cpu::~Cpu()
 {
 
 }
+
+/**********************************************************************
+Function Name:
+Purpose:
+Parameters:
+
+Return Value: None
+Local Variables:
+			None
+Algorithm:
+			1)
+Assistance Received: None
+**********************************************************************/
 std::string Cpu::playTurn(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_tableCount, int a_stackCount)
 {
 	std::string tempCard, tempTable;

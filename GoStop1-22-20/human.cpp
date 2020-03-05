@@ -6,8 +6,8 @@ Human::~Human()
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: playTurn
+Purpose: 
 Parameters:
 
 Return Value: None

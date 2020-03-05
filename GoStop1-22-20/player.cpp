@@ -16,12 +16,12 @@ Function Name: recieveCard
 Purpose: Used to add the card given by the dealer and adding it to the 
 players hand
 Parameters:
-			a_card, string passed by value. Holds the card dealt to the player
+		a_card, string passed by value. Holds the card dealt to the player
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Adds the card to the players hand vector
+		1) Adds the card to the players hand vector
 Assistance Received: None
 **********************************************************************/
 void Player::receiveCard(std::string a_card)
@@ -33,12 +33,12 @@ void Player::receiveCard(std::string a_card)
 Function Name: showHand
 Purpose: Used to display the players hand
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			i, for loop iterator
+		i, for loop iterator
 Algorithm:
-			1) Loops through the players hand and prints each card
+		1) Loops through the players hand and prints each card
 Assistance Received: None
 **********************************************************************/
 void Player::showHand()
@@ -54,22 +54,22 @@ void Player::showHand()
 Function Name: faceCards
 Purpose: Used to determine the highest card value the player has
 Parameters:
-			None
+		None
 Return Value: Returns a vector of ints that holds the number of each 
 value card the player has and what the highest value is
 Local Variables:
-			cardPriority, int that holds the value of the highest card
-			the player has
-			i, for loop iterator
+		cardPriority, int that holds the value of the highest card
+		the player has
+		i, for loop iterator
 Algorithm:
-			1) Looks through the players hand
-			2) If a K is found then it increments the index used to
-			represent the K cards by one, 13 for K, 12 for Q, 11 for J
-			and continues till 1 for 1. It keeps track of the number so
-			that ties can be broken if both players have the same highest
-			value then who ever has the most of that card goes first
-			3) The highest value card is stored in the first index of the 
-			vector then the vector is returned
+		1) Looks through the players hand
+		2) If a K is found then it increments the index used to
+		represent the K cards by one, 13 for K, 12 for Q, 11 for J
+		and continues till 1 for 1. It keeps track of the number so
+		that ties can be broken if both players have the same highest
+		value then who ever has the most of that card goes first
+		3) The highest value card is stored in the first index of the 
+		vector then the vector is returned
 Assistance Received: None
 **********************************************************************/
 std::vector<int> Player::faceCards()
@@ -145,18 +145,18 @@ Function Name: playTurn
 Purpose: Used to allow player to play their turn, this is a virtual function so
 the human and Computer classes have their own specific playTurn functions
 Parameters:
-			a_player, pointer to a Player obj. Represents the the current
-			player whos turn it is
-			a_table, vector of strings passed by value. The cards in the layout
-			a_stacks, vector of ints passed by value. Used 
-			to represent if there are any 3 stacks on the layout
-			a_tableCount, int passed by value. How many cards are in the layout
-			a_stackCount, int passed by value. Stacks in the layout
+		a_player, pointer to a Player obj. Represents the the current
+		player whos turn it is
+		a_table, vector of strings passed by value. The cards in the layout
+		a_stacks, vector of ints passed by value. Used 
+		to represent if there are any 3 stacks on the layout
+		a_tableCount, int passed by value. How many cards are in the layout
+		a_stackCount, int passed by value. Stacks in the layout
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) None
+		1) None
 Assistance Received: None
 **********************************************************************/
 std::string Player::playTurn(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_tableCount, int a_stackCount)
@@ -170,12 +170,12 @@ std::string Player::playTurn(Player* a_player, std::vector<std::string> a_table,
 Function Name: pullCard
 Purpose: Pulls the card from the players hand
 Parameters:
-			a_index, int passed by value. The index chosen
+		a_index, int passed by value. The index chosen
 Return Value: The card in the chosen index of the hand
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Gets the value from the index chosen then returns it
+		1) Gets the value from the index chosen then returns it
 Assistance Received: None
 **********************************************************************/
 std::string Player::pullCard(int a_index)
@@ -187,13 +187,13 @@ std::string Player::pullCard(int a_index)
 Function Name: removeCard
 Purpose: Removes a card from the hand of a player
 Parameters:
-			a_index, int passed by value. Index of the card being removed
+		a_index, int passed by value. Index of the card being removed
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Erases the index given from the player hand
-			2) Decrement the players handCount by 1
+		1) Erases the index given from the player hand
+		2) Decrement the players handCount by 1
 Assistance Received: None
 **********************************************************************/
 void Player::removeCard(int a_index)
@@ -207,18 +207,26 @@ Function Name: addCapture
 Purpose: Deals with adding cards that were captured to the capture pile,
 and to add the points to the players score when they have 4 of a kind
 Parameters:
-			a_capt, string passed by value. The card being captured
-			a_card, string passed by value. The card from the players hand
-			a_num, int passed by value. Denotes if the layout card is a 3 stack or not
-			a_triple, bool passed by value. If three seperate cards were captured 
-			from the layout
-			a_cards, string passed by value. The other two cards being captured when
-			the player is capturing three seperate cards
+		a_capt, string passed by value. The card being captured
+		a_card, string passed by value. The card from the players hand
+		a_num, int passed by value. Denotes if the layout card is a 3 stack or not
+		a_triple, bool passed by value. If three seperate cards were captured 
+		from the layout
+		a_cards, string passed by value. The other two cards being captured when
+		the player is capturing three seperate cards
 Return Value: None
 Local Variables:
-			combineIndex, int
+		combineIndex, int
 Algorithm:
-			1)
+		1) If a_num is 4 then it is dealing with a 4 stack,
+		increments the players score and if they are 3 seperate
+		cards then capture accordingly
+		2) If a_num is 2 then it is a pair capture, checks the 
+		players capture pile for any pairs that can combine to
+		a 4 stack with the new capture and increments points
+		if a 4 stack is created
+		3) Checks for 3 stack captures
+		4) Adds the captures to the player capture pile
 Assistance Received: None
 **********************************************************************/
 void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool a_triple, std::string a_cards)
@@ -226,7 +234,8 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 	int combineIndex = 0;
 	int stackCount = 0;
 	std::string capturedStack;
-	if (a_num == 4) //4 stack
+	//4 stack
+	if (a_num == 4) 
 	{
 		roundScore++;
 		score++;
@@ -240,11 +249,13 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 			return;
 		}
 	}
-	else if (a_num == 2) //2 stack
+	//2 stack
+	else if (a_num == 2)
 	{
 		for (unsigned int i = 0; i < capturePile.size(); i++)
 		{
-			if (a_capt[0] == capturePile[i][0]) //checks if the player has any other captured pairs of the same card to combine into a 4-stack
+			//checks if the player has any other captured pairs of the same card to combine into a 4-stack
+			if (a_capt[0] == capturePile[i][0]) 
 			{
 				stackCount++;
 				if (capturePile[i][2] == ' ')
@@ -262,7 +273,8 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 					capturePile.erase(capturePile.begin() + combineIndex);
 					roundScore++;
 					score++;
-					a_num = 4; //making it a 4 stack
+					//making it a 4 stack
+					a_num = 4; 
 					combineIndex = 1;
 					return;
 				}
@@ -287,12 +299,12 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 Function Name: showScore
 Purpose: Returns the players score
 Parameters:
-			None
+		None
 Return Value: The players score, int
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Returns the score
+		1) Returns the score
 Assistance Received: None
 **********************************************************************/
 int Player::showScore()
@@ -304,12 +316,12 @@ int Player::showScore()
 Function Name: showCapturePile
 Purpose: Shows the players capture pile
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			i, for loop iterator
+		i, for loop iterator
 Algorithm:
-			1) Prints out all the cards in the players hand
+		1) Prints out all the cards in the players hand
 Assistance Received: None
 **********************************************************************/
 void Player::showCapturePile()
@@ -326,12 +338,12 @@ void Player::showCapturePile()
 Function Name: returnHand
 Purpose: returns the hand of the player
 Parameters:
-			None
+		None
 Return Value: The players hand, vector of strings
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Return the players hand
+		1) Return the players hand
 Assistance Received: None
 **********************************************************************/
 std::vector<std::string> Player::returnHand()
@@ -343,18 +355,18 @@ std::vector<std::string> Player::returnHand()
 Function Name: anyTableOption
 Purpose: Checks if the player can make a play on any cards on the layout
 Parameters:
-			a_table, vector of strings passed by value. The cards
-			in the layout
-			a_player, pointer to a Player obj. The player currently
-			playing
+		a_table, vector of strings passed by value. The cards
+		in the layout
+		a_player, pointer to a Player obj. The player currently
+		playing
 Return Value: If the player can make a play on anything on the layout,
 bool
 Local Variables:
-			i, for loop iterator
-			j, for loop iterator
+		i, for loop iterator
+		j, for loop iterator
 Algorithm:
-			1) Search layout for any matches with a card from the hand
-			2) If there is a match return true, if not then return false
+		1) Search layout for any matches with a card from the hand
+		2) If there is a match return true, if not then return false
 Assistance Received: None
 **********************************************************************/
 bool Player::anyTableOption(std::vector<std::string> a_table, Player* a_player)
@@ -378,22 +390,22 @@ Purpose: Used to collect input from player of what they would like to
 do, this is the virtual function so Human and Computer have their own menu
 functions
 Parameters:
-			a_player, pointer to a Player obj. Represents the Human player
-			a_player2, pointer to a Player obj. Represents the Computer player
-			a_table, vector of strings passed by value. The cards in the layout
-			a_stacks, vector of ints passed by value. Used to represent which cards
-			are 3 stacks
-			a_round, int passed by value. The current round
-			a_score1, int passed by value. The Human player's score
-			a_score2, int passed by value. The Computer player's score
-			a_stock, vector of strings passed by value. The vector holding the 
-			cards remaining in the stock pile
-			a_next, string passed by value. The current player
+		a_player, pointer to a Player obj. Represents the Human player
+		a_player2, pointer to a Player obj. Represents the Computer player
+		a_table, vector of strings passed by value. The cards in the layout
+		a_stacks, vector of ints passed by value. Used to represent which cards
+		are 3 stacks
+		a_round, int passed by value. The current round
+		a_score1, int passed by value. The Human player's score
+		a_score2, int passed by value. The Computer player's score
+		a_stock, vector of strings passed by value. The vector holding the 
+		cards remaining in the stock pile
+		a_next, string passed by value. The current player
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Nothing, Human and computer use their own
+		1) Nothing, Human and computer use their own
 Assistance Received: None
 **********************************************************************/
 std::string Player::menu(Player* a_player, Player* a_player2, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_round, int a_score1, int a_score2, std::vector<std::string> a_stock, std::string a_next)
@@ -406,25 +418,25 @@ std::string Player::menu(Player* a_player, Player* a_player2, std::vector<std::s
 Function Name: serialize
 Purpose: Saving the state of the game to a serialization file
 Parameters:
-			a_player, pointer to a Player obj. Represents the Human player
-			a_player2, pointer to a Player obj. Represents the Computer player
-			a_table, vector of strings passed by value. The cards in the layout
-			a_stacks, vector of ints passed by value. Used to represent which cards
-			are 3 stacks
-			a_round, int passed by value. The current round
-			a_score1, int passed by value. The Human player's score
-			a_score2, int passed by value. The Computer player's score
-			a_stock, vector of strings passed by value. The vector holding the 
-			cards remaining in the stock pile
-			a_next, string passed by value. The current player
+		a_player, pointer to a Player obj. Represents the Human player
+		a_player2, pointer to a Player obj. Represents the Computer player
+		a_table, vector of strings passed by value. The cards in the layout
+		a_stacks, vector of ints passed by value. Used to represent which cards
+		are 3 stacks
+		a_round, int passed by value. The current round
+		a_score1, int passed by value. The Human player's score
+		a_score2, int passed by value. The Computer player's score
+		a_stock, vector of strings passed by value. The vector holding the 
+		cards remaining in the stock pile
+		a_next, string passed by value. The current player
 Return Value: None
 Local Variables:
-			i,j,k,l,m,n,o, for loop iterators
+		i,j,k,l,m,n,o, for loop iterators
 Algorithm:
-			1) Asks the the user what file they would like to save to,
-			then either creates one or saves to an existing one
-			2) Saves both players scores, hands, and capture piles, the layout,
-			round number, the stock pile, and whos turn the game was saved on
+		1) Asks the the user what file they would like to save to,
+		then either creates one or saves to an existing one
+		2) Saves both players scores, hands, and capture piles, the layout,
+		round number, the stock pile, and whos turn the game was saved on
 Assistance Received:https://www.geeksforgeeks.org/file-handling-c-classes/
 **********************************************************************/
 void Player::serialize(Player* a_player, Player* a_player2, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_round, int a_score1, int a_score2, std::vector<std::string> a_stock, std::string a_next)
@@ -510,17 +522,17 @@ Purpose: Used for matching the stock cards with cards on the layout,
 this is a virtual function so the Human and Computer classes use their
 own specific function
 Parameters:
-			a_matchList, vector of ints passed by value.
-			a_list, vector of strings passed by value.
-			a_cardDrawn, string passed by value.
-			a_stockIndex, int passed by value.
+		a_matchList, vector of ints passed by value.
+		a_list, vector of strings passed by value.
+		a_cardDrawn, string passed by value.
+		a_stockIndex, int passed by value.
 Return Value: The index of the card on the layout that was selected,
-				int
+			int
 Local Variables:
-			i, for loop iterator
+		i, for loop iterator
 Algorithm:
-			1) virtual function, but used to look for matches in the 
-			layout with the stock card pulled
+		1) virtual function, but used to look for matches in the 
+		layout with the stock card pulled
 Assistance Received: None
 **********************************************************************/
 int Player::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string> a_list, std::string a_cardDrawn, int a_stockIndex)
@@ -553,12 +565,12 @@ int Player::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string
 Function Name: clearHand
 Purpose: clears the players hand, used if the hands need to be re-delt
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Clears the hand vector
+		1) Clears the hand vector
 Assistance Received: None
 **********************************************************************/
 void Player::clearHand()
@@ -570,19 +582,19 @@ void Player::clearHand()
 Function Name: loadGame
 Purpose: loads the hand, hand size, and capture pile given by a load file
 Parameters:
-			a_hand, vector of strings passed by value. The players hand
-			from the load file
-			a_cap, vector of strings passed by value. The players capture
-			pile from the load file
-			a_score, int passed by value. The players score from the load
-			file
+		a_hand, vector of strings passed by value. The players hand
+		from the load file
+		a_cap, vector of strings passed by value. The players capture
+		pile from the load file
+		a_score, int passed by value. The players score from the load
+		file
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Sets hand from the load file to the players hand
-			2) Sets capture pile from load file to the players capture
-			pile
+		1) Sets hand from the load file to the players hand
+		2) Sets capture pile from load file to the players capture
+		pile
 Assistance Received: None
 **********************************************************************/
 void Player::loadGame(std::vector<std::string> a_hand, std::vector<std::string> a_cap, int a_score)
@@ -598,14 +610,14 @@ void Player::loadGame(std::vector<std::string> a_hand, std::vector<std::string> 
 Function Name: loadScore
 Purpose: loads the players score from the load file
 Parameters:
-			a_score, int passed by value. The players score from the 
-			load file
+		a_score, int passed by value. The players score from the 
+		load file
 Return Value: Players score, int
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Sets the loaded score to the current players score and
-			returns the score
+		1) Sets the loaded score to the current players score and
+		returns the score
 Assistance Received: None
 **********************************************************************/
 int Player::loadScore(int a_score)
@@ -618,12 +630,12 @@ int Player::loadScore(int a_score)
 Function Name: returnRoundScore
 Purpose: returns the players score for the current round
 Parameters:
-			None
+		None
 Return Value: The players score for the current round
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Return the players score
+		1) Return the players score
 Assistance Received: None
 **********************************************************************/
 int Player::returnRoundScore()
@@ -637,15 +649,15 @@ Purpose: The help menu used that can be used by the Human player,
 this is a virtual function so the Human has its own specific
 function
 Parameters:
-			a_player, pointer to a player obj.
-			a_table, vector of strings passed by value.
-			a_stacks, vector of ints passed by value.
+		a_player, pointer to a player obj.
+		a_table, vector of strings passed by value.
+		a_stacks, vector of ints passed by value.
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Virtual function, so the fucntion used is in the Human
-			class
+		1) Virtual function, so the fucntion used is in the Human
+		class
 Assistance Received: None
 **********************************************************************/
 void Player::helpMenu(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks)
@@ -660,17 +672,17 @@ Parameters:
 		None
 Return Value: None
 Local Variables:
-			stackCount, int. Used to hold the value of the current
-			card being looked at in the capture pile
-			match, string. Used to hold the string value of the current
-			card being looked at in the capture pile
-			stackIndexes[], vector of ints that keeps track of how many
-			of each card is in the players capture pile
+		stackCount, int. Used to hold the value of the current
+		card being looked at in the capture pile
+		match, string. Used to hold the string value of the current
+		card being looked at in the capture pile
+		stackIndexes[], vector of ints that keeps track of how many
+		of each card is in the players capture pile
 Algorithm:
-			1) Reads through the players capture pile and counts how many
-			of each type of card they have
-			2) If the player each pair of 4 of a card they have adds a
-			point to their score
+		1) Reads through the players capture pile and counts how many
+		of each type of card they have
+		2) If the player each pair of 4 of a card they have adds a
+		point to their score
 Assistance Received: None
 **********************************************************************/
 void Player::loadRoundScore()
@@ -714,12 +726,12 @@ void Player::loadRoundScore()
 Function Name: getCapturePile
 Purpose: Returns the players capture pile
 Parameters:
-			None
+		None
 Return Value: The players capture pile, a vector of strings
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Return the players capture pile
+		1) Return the players capture pile
 Assistance Received: None
 **********************************************************************/
 std::vector<std::string> Player::getCapturePile()
@@ -732,21 +744,21 @@ Function Name: isInCapPile
 Purpose: Checks whether there are cards in the players capture pile
 that match a card they have in their hand
 Parameters:
-			a_player, a pointer to a Player obj. The player whos
-			capture pile is being checked
-			a_cardType, char. The value of the type of card being looked
-			for
+		a_player, a pointer to a Player obj. The player whos
+		capture pile is being checked
+		a_cardType, char. The value of the type of card being looked
+		for
 Return Value: If there is a match or not, bool
 Local Variables:
-			i, for loop iterator
-			tempCap, vector of strings that temporarily holds the 
-			players capture pile
+		i, for loop iterator
+		tempCap, vector of strings that temporarily holds the 
+		players capture pile
 Algorithm:
-			1) Get the current players capture pile
-			2) Look through the players capture pile
-			to find any matches
-			3) Either return true if a match was found or
-			false if there is no match
+		1) Get the current players capture pile
+		2) Look through the players capture pile
+		to find any matches
+		3) Either return true if a match was found or
+		false if there is no match
 Assistance Received: None
 **********************************************************************/
 bool Player::isInCapPile(Player* a_player, char a_cardType)

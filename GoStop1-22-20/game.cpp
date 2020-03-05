@@ -16,41 +16,29 @@ Game::~Game()
 {
 
 }
-/**********************************************************************
-Function Name:
-Purpose:
-Parameters:
-
-Return Value: None
-Local Variables:
-			None
-Algorithm:
-			1)
-Assistance Received: None
-**********************************************************************/
 
 /**********************************************************************
 Function Name: startGame
 Purpose: Starts the game and creates the player objects, the round object,
 and deals with load files.
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Checks if the game is a loaded file or is a new game
-			2) Creates the all the player objects and the round object
-			3) If the game is loaded then load all the data from the 
-			load file and start the round
-			4) If the game is new then it starts a new game
-			5) After a round ends it declares the winner of the round,
-			shows the scores, and asks if the human would like 
-			to play another round
-			6) If the player would like to play another then it remakes 
-			the objects again and starts the round
-			7) If the player wants to quit then it calls the function
-			to determine the winner
+		1) Checks if the game is a loaded file or is a new game
+		2) Creates the all the player objects and the round object
+		3) If the game is loaded then load all the data from the 
+		load file and start the round
+		4) If the game is new then it starts a new game
+		5) After a round ends it declares the winner of the round,
+		shows the scores, and asks if the human would like 
+		to play another round
+		6) If the player would like to play another then it remakes 
+		the objects again and starts the round
+		7) If the player wants to quit then it calls the function
+		to determine the winner
 Assistance Received: None
 **********************************************************************/
 void Game::startGame()
@@ -87,19 +75,19 @@ void Game::startGame()
 Function Name: askToPlay
 Purpose: Menu to ask if the player would like to play another round
 Parameters:
-			a_winner, int passed by value. Last winner or player exiting the game
+		a_winner, int passed by value. Last winner or player exiting the game
 Return Value: None
 Local Variables:
-			valid, bool. Tells if input is valid or not
+		valid, bool. Tells if input is valid or not
 Algorithm:
-			1) If the value passed in through a_winner is -1
-			then the player has selected exit in the menu and wants
-			to exit the game, it sets playagain to false and returns
-			2) If the player didint select exit then it asks if they
-			would like to play another round
-			3) If the player inputs y then the roundCounter increments 
-			and sets playAgain to true, if they input n then playAgain
-			is set to false
+		1) If the value passed in through a_winner is -1
+		then the player has selected exit in the menu and wants
+		to exit the game, it sets playagain to false and returns
+		2) If the player didint select exit then it asks if they
+		would like to play another round
+		3) If the player inputs y then the roundCounter increments 
+		and sets playAgain to true, if they input n then playAgain
+		is set to false
 Assistance Received: None
 **********************************************************************/
 
@@ -139,14 +127,14 @@ void Game::askToPlay(int a_winner)
 Function Name: determineWinner
 Purpose: Determines the winner of the game based on the players scores
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			exit, int. Used to hold the exit
+		exit, int. Used to hold the exit
 Algorithm:
-			1) Decides the winner based on who ever has the highest
-			score or declares a tie if they are equal
-			2) Asks to enter key to exit
+		1) Decides the winner based on who ever has the highest
+		score or declares a tie if they are equal
+		2) Asks to enter key to exit
 Assistance Received: None
 **********************************************************************/
 void Game::determineWinner()
@@ -179,14 +167,14 @@ void Game::determineWinner()
 Function Name: newOrLoad
 Purpose: Used to have the player input whether it is a new game or load
 Parameters:
-			None
+		None
 Return Value: Whether it is a new game or not, bool
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Asks if player would like a new game or load one
-			2) If they input new then return true, if they
-			input load then load the game and return false
+		1) Asks if player would like a new game or load one
+		2) If they input new then return true, if they
+		input load then load the game and return false
 Assistance Received: None
 **********************************************************************/
 bool Game::newOrLoad()
@@ -215,17 +203,17 @@ bool Game::newOrLoad()
 Function Name: loadGame
 Purpose: Reading in the load file
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			file, fstream. fstream to read in the file
-			word, string. String to hold each word as it reads through
-			the file
-			fileName, string. Name of the file the user wants to load
+		file, fstream. fstream to read in the file
+		word, string. String to hold each word as it reads through
+		the file
+		fileName, string. Name of the file the user wants to load
 Algorithm:
-			1) Asks for the file the user wants to load
-			2) Open the file and read the file, take in the data
-			and store it into the correct variables
+		1) Asks for the file the user wants to load
+		2) Open the file and read the file, take in the data
+		and store it into the correct variables
 Assistance Received: None
 **********************************************************************/
 void Game::loadGame()

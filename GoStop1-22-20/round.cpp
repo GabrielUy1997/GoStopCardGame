@@ -24,35 +24,35 @@ Function Name: startRound
 Purpose: The function that initatiates rounds whether its a new or loaded and calls the 
 functions needed to run a single round
 Parameters:
-			a_player1, pointer to Player obj. Used to represent the Human player
-			a_player2, pointer to Player obj. Used to represent the Computer player
-			roundCounter, int. Used to denote what round the current game is in
-			a_lastWin, int. If it is past the first round of the game it is used to 
-			know who won the last round
-			a_p1Score, int. Used to know what the score of the Human player is
-			a_p2Score, int Used to know what the score of the Computer player is
-			a_isNew, bool. Used to know whether the round is the first round of the game
-			or not
-			a_loadedLay, vector of strings. Used if a game is loaded in and sets the 
-			layout to match the file
+		a_player1, pointer to Player obj. Used to represent the Human player
+		a_player2, pointer to Player obj. Used to represent the Computer player
+		roundCounter, int. Used to denote what round the current game is in
+		a_lastWin, int. If it is past the first round of the game it is used to 
+		know who won the last round
+		a_p1Score, int. Used to know what the score of the Human player is
+		a_p2Score, int Used to know what the score of the Computer player is
+		a_isNew, bool. Used to know whether the round is the first round of the game
+		or not
+		a_loadedLay, vector of strings. Used if a game is loaded in and sets the 
+		layout to match the file
 Return Value: exit type, int
 Local Variables:
-			exit, string to store whether the player selected exit
+		exit, string to store whether the player selected exit
 Algorithm:
-			1) Load in both players scores
-			2) Create the dealer object
-			3) If it is a new game then set up a new game
-			4) If its a loaded game then load the deck from
-			the file
-			5) If starter is equal to 1 then start the round with
-			the human player going first
-			6) If starter is equal to 2 then start the round with
-			the Computer going first
-			7) If starter is 0, then the game must reset because 
-			both player have the same hand
-			8) If the game was loaded then load the players scores
-			9) Determine the winner and display the scores
-			10) Return the winner
+		1) Load in both players scores
+		2) Create the dealer object
+		3) If it is a new game then set up a new game
+		4) If its a loaded game then load the deck from
+		the file
+		5) If starter is equal to 1 then start the round with
+		the human player going first
+		6) If starter is equal to 2 then start the round with
+		the Computer going first
+		7) If starter is 0, then the game must reset because 
+		both player have the same hand
+		8) If the game was loaded then load the players scores
+		9) Determine the winner and display the scores
+		10) Return the winner
 Assistance Received: None
 **********************************************************************/
 int Round::startRound(Player* a_player1, Player* a_player2, Player* a_player3, int roundCounter, int a_lastWin, int a_p1Score, int a_p2Score, bool a_isNew, std::vector<std::string> a_loadedLay)
@@ -123,20 +123,20 @@ int Round::startRound(Player* a_player1, Player* a_player2, Player* a_player3, i
 Function Name: loadRound
 Purpose: Loads the data from the load file given into the round variables
 Parameters:
-			a_player1, pointer to Player obj. Used to represent the Human player
-			a_player2, pointer to Player obj. Used to represent the Computer player
-			a_nextplayer, int. Used to know who is turn it was when the state of the game
-			was saved
-			a_layout, vector of strings. The layout from the loaded file
-			a_stacks, vector of ints. stacks on the layout from the loaded file
+		a_player1, pointer to Player obj. Used to represent the Human player
+		a_player2, pointer to Player obj. Used to represent the Computer player
+		a_nextplayer, int. Used to know who is turn it was when the state of the game
+		was saved
+		a_layout, vector of strings. The layout from the loaded file
+		a_stacks, vector of ints. stacks on the layout from the loaded file
 Return Value:
 Local Variables:
-			None
+		None
 Algorithm:
-			1) If the number is 1 then Human player goes first 
-			2) if the number is 2 then Computer player goes first
-			3) Set the table cards and the stacks to match the file
-			that was loaded
+		1) If the number is 1 then Human player goes first 
+		2) if the number is 2 then Computer player goes first
+		3) Set the table cards and the stacks to match the file
+		that was loaded
 Assistance Received: None
 **********************************************************************/
 int Round::loadRound(Player* a_player1, Player* a_player2, int a_nextPlayer, std::vector<std::string> a_layout, std::vector<int> a_stacks)
@@ -159,23 +159,23 @@ int Round::loadRound(Player* a_player1, Player* a_player2, int a_nextPlayer, std
 /**********************************************************************
 Function Name: goFirst
 Purpose: Used to determine who goes first either based on who won the previous round or if there is a 
-	tie/is a new game determines it using the players face cards.
+tie/is a new game determines it using the players face cards.
 Parameters:
-			a_player1, pointer to a Player obj. Used to represent the Human player and check
-			if they have the highest card value
-			a_player2, pointer to a Player obj. Used to represent the Computer player and check
-			if they have the highest card value
-			a_lastWin, int passed by value. Used to see who had the most points from the previous
-			round
+		a_player1, pointer to a Player obj. Used to represent the Human player and check
+		if they have the highest card value
+		a_player2, pointer to a Player obj. Used to represent the Computer player and check
+		if they have the highest card value
+		a_lastWin, int passed by value. Used to see who had the most points from the previous
+		round
 Return Value: The player that is going first in the round, int
 Local Variables:
-			p1Prior, vector of ints that are used to show what card values the Human player has
-			p2Prior, vector of ints that are used to show what card values the Computer player has
+		p1Prior, vector of ints that are used to show what card values the Human player has
+		p2Prior, vector of ints that are used to show what card values the Computer player has
 Algorithm:
-			1) If it isnt the first round then the player that scored the most points the previous
-			round goes first
-			2) If the previous round was a tie or it is a new game then the player with the highest
-			value card gets to go first and their player number is returned
+		1) If it isnt the first round then the player that scored the most points the previous
+		round goes first
+		2) If the previous round was a tie or it is a new game then the player with the highest
+		value card gets to go first and their player number is returned
 Assistance Received: None
 **********************************************************************/
 int Round::goFirst(Player* a_player1, Player* a_player2, int a_lastWin)
@@ -282,19 +282,16 @@ int Round::goFirst(Player* a_player1, Player* a_player2, int a_lastWin)
 	}
 }
 
-/*
-	The showTable() function is used to display the layout to the consloe.
-*/
 /**********************************************************************
 Function Name: showTable
 Purpose: Displays the layout cards
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			i, int for loop counter
+		i, int for loop counter
 Algorithm:
-			1) Prints out all the cards in the layout
+		1) Prints out all the cards in the layout
 Assistance Received: None
 **********************************************************************/
 void Round::showTable()
@@ -312,20 +309,20 @@ void Round::showTable()
 Function Name: passOutCards
 Purpose: Deals the cards to each player and the layout
 Parameters:
-			a_dealer, Dealer obj. Used to access the deck
-			a_player1, pointer to a Player obj. Used to represent the Human player and 
-			to give them the hand cards.
-			a_player2, pointer to a Player obj. Used to represent the Computer player and 
-			to give them the hand cards.
+		a_dealer, Dealer obj. Used to access the deck
+		a_player1, pointer to a Player obj. Used to represent the Human player and 
+		to give them the hand cards.
+		a_player2, pointer to a Player obj. Used to represent the Computer player and 
+		to give them the hand cards.
 Return Value: the dealer, Dealer obj
 Local Variables:
-			i, int round counter
+		i, int round counter
 Algorithm:
-			1) Passes the cards out to both players and the layout in the 
-			order specified by the project.
-			2) Calls checkIfSameHand to make sure both player dont have the
-			same cards
-			3) Returns the dealer obj
+		1) Passes the cards out to both players and the layout in the 
+		order specified by the project.
+		2) Calls checkIfSameHand to make sure both player dont have the
+		same cards
+		3) Returns the dealer obj
 Assistance Received: None
 **********************************************************************/
 Dealer Round::passOutCards(Dealer a_dealer, Player* a_player1, Player* a_player2)
@@ -371,16 +368,16 @@ Dealer Round::passOutCards(Dealer a_dealer, Player* a_player1, Player* a_player2
 Function Name: isLegal
 Purpose: Determines if the move made by the player is a legal move
 Parameters:
-			a_playerCard, string passed by value. Used to compare to the table card selected
-			a_tableCard, string passed by value. Used to compare to the card played by the player
+		a_playerCard, string passed by value. Used to compare to the table card selected
+		a_tableCard, string passed by value. Used to compare to the card played by the player
 Return Value: Whether its a legal play or not, bool
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Checks if the card played from the hand is the same as the table card selected, if
-			they have the same value then it is a legal play, returns true;
-			2) If the cards arent the same value then it is an illegal move,
-			returns false;
+		1) Checks if the card played from the hand is the same as the table card selected, if
+		they have the same value then it is a legal play, returns true;
+		2) If the cards arent the same value then it is an illegal move,
+		returns false;
 Assistance Received: None
 **********************************************************************/
 bool Round::isLegal(std::string a_playerCard, std::string a_tableCard) //verifying if chosen move is legal
@@ -399,31 +396,31 @@ bool Round::isLegal(std::string a_playerCard, std::string a_tableCard) //verifyi
 /**********************************************************************
 Function Name: stacksOperations
 Purpose: Preforms the stacking operations for the layout cards, such as removing cards or
-			creating 3 stacks 
+creating 3 stacks 
 Parameters:
-			a_card, string passed by value. Used to know what card was played
-			a_stock, string passed by value. Used to know what stock card was pulled
-			a_index, int passed by value. Index of the card selected on the layout
-			a_player, pointer to Player obj. Current player
-			stackNum, int passed by value. Used to determine if there is a 3 stack on the
-			layout index selected
+		a_card, string passed by value. Used to know what card was played
+		a_stock, string passed by value. Used to know what stock card was pulled
+		a_index, int passed by value. Index of the card selected on the layout
+		a_player, pointer to Player obj. Current player
+		stackNum, int passed by value. Used to determine if there is a 3 stack on the
+		layout index selected
 Return Value: None
 Local Variables:
-			capType, string that represents the value of the card that was passed in
-			temp, string that temporarily holds the index of the card currently being used
+		capType, string that represents the value of the card that was passed in
+		temp, string that temporarily holds the index of the card currently being used
 Algorithm:
-			1) Gets the value of the card played from the players hand
-			2) Checks if there were 3 of the same card were detected in the layout,
-			if there was then a full stack is created and added to the current players
-			capture pile. Then each one is removed from the layout
-			3) If the tableStacks of the index chosen is 2 then the player is playing 
-			on a triple stack and they capture a full stack. The full stack is added to
-			their capture pile then removed from the layout
-			4) If the stackNum is 1 then the player is capturing a half stack, the card
-			is then removed from the layout and the half stack is added to the capture
-			pile
-			5) If it did not fit the criteria of any of the previous steps then
-			a 3 stack is created on the layout
+		1) Gets the value of the card played from the players hand
+		2) Checks if there were 3 of the same card were detected in the layout,
+		if there was then a full stack is created and added to the current players
+		capture pile. Then each one is removed from the layout
+		3) If the tableStacks of the index chosen is 2 then the player is playing 
+		on a triple stack and they capture a full stack. The full stack is added to
+		their capture pile then removed from the layout
+		4) If the stackNum is 1 then the player is capturing a half stack, the card
+		is then removed from the layout and the half stack is added to the capture
+		pile
+		5) If it did not fit the criteria of any of the previous steps then
+		a 3 stack is created on the layout
 Assistance Received: None
 **********************************************************************/
 void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index, Player* a_player, int stackNum) 
@@ -489,16 +486,16 @@ void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index
 Function Name: addToLayout
 Purpose: Used to add cards to the layout
 Parameters:
-			a_play, string passed by value. Used to add to the layout
+		a_play, string passed by value. Used to add to the layout
 Return Value: None
 Local Variables: 
-			None
+		None
 Algorithm:
-			1) Insert the card passed in to the tableCards vector
-			2) Insert another index to the tableStacks vector to 
-			keep track of if it is stacked or not
-			3) Increment tableCounter and stacksCounter
-			4) Display to the screen what card is being added to the layout
+		1) Insert the card passed in to the tableCards vector
+		2) Insert another index to the tableStacks vector to 
+		keep track of if it is stacked or not
+		3) Increment tableCounter and stacksCounter
+		4) Display to the screen what card is being added to the layout
 Assistance Received: None
 **********************************************************************/
 void Round::addToLayout(std::string a_play)
@@ -514,18 +511,18 @@ void Round::addToLayout(std::string a_play)
 Function Name: playStock
 Purpose: Draws the stock card and checks if the card makes a triple stack
 Parameters:
-			a_deal, Dealer obj. Used to access the deck
-			a_cardsStacking, int passed by value. Used to set triple stacks if
-			cards match
+		a_deal, Dealer obj. Used to access the deck
+		a_cardsStacking, int passed by value. Used to set triple stacks if
+		cards match
 Return Value: a_dealer, Dealer object passed by value
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Pulls the card from the top of the stockpile
-			2) Displays the card
-			3) Checks if the card matches the card the current player is playing
-			from their hand
-			4) Return the updated dealer obj
+		1) Pulls the card from the top of the stockpile
+		2) Displays the card
+		3) Checks if the card matches the card the current player is playing
+		from their hand
+		4) Return the updated dealer obj
 Assistance Received: None
 **********************************************************************/
 Dealer Round::playStock(Dealer a_deal, int a_cardsStacking)
@@ -549,14 +546,14 @@ Dealer Round::playStock(Dealer a_deal, int a_cardsStacking)
 Function Name: showStats
 Purpose: Displays the hand and capture piles of both players and the layout
 Parameters:
-			a_player1, pointer to a Player obj. Used to represent the Human player
-			a_player2, pointer to a Player obj. Used to represent the Computer player
-			a_roundCounter, int passed by value. Used to display the current round
+		a_player1, pointer to a Player obj. Used to represent the Human player
+		a_player2, pointer to a Player obj. Used to represent the Computer player
+		a_roundCounter, int passed by value. Used to display the current round
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Print round, both players hands and capture piles, and score
+		1) Print round, both players hands and capture piles, and score
 Assistance Received: None
 **********************************************************************/
 void Round::showStats(Player* a_player1, Player* a_player2, int a_roundCounter)
@@ -586,16 +583,16 @@ void Round::showStats(Player* a_player1, Player* a_player2, int a_roundCounter)
 Function Name: roundEnd
 Purpose: Displays the results of a round after it ends
 Parameters:
-			a_player1, pointer to a Player obj. Used to represent the Human player
-			a_player2, pointer to a Player obj. Used to represent the Computer player
+		a_player1, pointer to a Player obj. Used to represent the Human player
+		a_player2, pointer to a Player obj. Used to represent the Computer player
 Return Value: The winner, 1 for player 1, 2 for player2, or 3 for tie, an int
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Shows that a round has ended
-			2) Prints both players scores during the round and total game score after
-			recieving the points
-			3) Returns the winner
+		1) Shows that a round has ended
+		2) Prints both players scores during the round and total game score after
+		recieving the points
+		3) Returns the winner
 Assistance Received: None
 **********************************************************************/
 int Round::roundEnd(Player* a_player1, Player* a_player2)
@@ -624,12 +621,12 @@ int Round::roundEnd(Player* a_player1, Player* a_player2)
 Function Name: errorCatch
 Purpose: Used if incorrect inputs are entered
 Parameters:
-			None
+		None
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Used to tell if somehow an incorrect input was taken
+		1) Used to tell if somehow an incorrect input was taken
 Assistance Received: None
 **********************************************************************/
 void Round::errorCatch()
@@ -642,13 +639,13 @@ void Round::errorCatch()
 Function Name: noPlay
 Purpose: Used when a player has no matches to make on the layout
 Parameters:
-			a_player, pointer to Player obj. Used to know what player is currently playing
+		a_player, pointer to Player obj. Used to know what player is currently playing
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Get the index of the card that the player wants to add to the layout
-			2) Pull it from the players hand
+		1) Get the index of the card that the player wants to add to the layout
+		2) Pull it from the players hand
 Assistance Received: None
 **********************************************************************/
 void Round::noPlay(Player* a_player)
@@ -662,17 +659,17 @@ void Round::noPlay(Player* a_player)
 Function Name: canPlay
 Purpose: Used when the player does have a possible play on the layout
 Parameters:
-			a_player, pointer to a Player obj. Used to know what player is currently playing
+		a_player, pointer to a Player obj. Used to know what player is currently playing
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Gets the index of the card the player wants to play from their hand
-			2) Checks if the string's second index is empty then the table cards index
-			is less than 10, if it isnt empty then make sure the second digit of the
-			index isnt cut off
-			3) Use the indexes to get the card from the players hand and the card 
-			on the layout
+		1) Gets the index of the card the player wants to play from their hand
+		2) Checks if the string's second index is empty then the table cards index
+		is less than 10, if it isnt empty then make sure the second digit of the
+		index isnt cut off
+		3) Use the indexes to get the card from the players hand and the card 
+		on the layout
 Assistance Received: None
 **********************************************************************/
 void Round::canPlay(Player* a_player)
@@ -706,30 +703,30 @@ void Round::canPlay(Player* a_player)
 Function Name: checkStacks
 Purpose: Used to check whether there is a triple or a pair being created in the layout
 Parameters:
-			a_player, pointer to a Player obj. Used to know what player is currently playing
+		a_player, pointer to a Player obj. Used to know what player is currently playing
 Return Value: None
 Local Variables:
-			tableMatches[], a vector of ints that holds the
-			index of the each card that matches the card played 
+		tableMatches[], a vector of ints that holds the
+		index of the each card that matches the card played 
 Algorithm:
-			1) Checks if it is possible to play a card and capture 3 layout cards,
-			if not then it is still possible card can be added to the layout
-			2) Checks if the card played is the same as the stock card, if it is
-			then stack them meaning that it will make a 3 stack
-			3) If the stock and played card arent the same then 3 stack isnt created
-			4) If the card that was played isnt being added to the layout then continue
-			and call the stacksOperations function
-			5) If the stock card didnt match the card played or the card played collected
-			3 cards on the layout then search the layout for matches with the stock card
-			6) Add the index of each match to the tableMatches vector, if there are no 
-			matches then addToLay is still true
-			7) If there is only one match then it prints out what kind of capture it is
-			and captures the card that is at that index on the layout
-			8) If ther is more than one match then it calls the current players stockMatchMenu
-			and uses the value that is returned
-			9) If the stock card had no matches then it is added to the layout
-			10) If the stock card had one or more matches then the stacksOperations function
-			is called
+		1) Checks if it is possible to play a card and capture 3 layout cards,
+		if not then it is still possible card can be added to the layout
+		2) Checks if the card played is the same as the stock card, if it is
+		then stack them meaning that it will make a 3 stack
+		3) If the stock and played card arent the same then 3 stack isnt created
+		4) If the card that was played isnt being added to the layout then continue
+		and call the stacksOperations function
+		5) If the stock card didnt match the card played or the card played collected
+		3 cards on the layout then search the layout for matches with the stock card
+		6) Add the index of each match to the tableMatches vector, if there are no 
+		matches then addToLay is still true
+		7) If there is only one match then it prints out what kind of capture it is
+		and captures the card that is at that index on the layout
+		8) If ther is more than one match then it calls the current players stockMatchMenu
+		and uses the value that is returned
+		9) If the stock card had no matches then it is added to the layout
+		10) If the stock card had one or more matches then the stacksOperations function
+		is called
 Assistance Received: None
 **********************************************************************/
 void Round::checkStacks(Player* a_player)
@@ -809,23 +806,23 @@ void Round::checkStacks(Player* a_player)
 Function Name: checkIfSameHand
 Purpose: Used to check if both players have duplicate hands
 Parameters:
-			a_dealer, Dealer obj. Used to access the deck
-			a_player1, pointer to a Player obj. Used to represent the Human player
-			a_player2, pointer to a Player obj. Used to represent the Computer player
+		a_dealer, Dealer obj. Used to access the deck
+		a_player1, pointer to a Player obj. Used to represent the Human player
+		a_player2, pointer to a Player obj. Used to represent the Computer player
 Return Value: None
 Local Variables:
-			p1_hand, vector of strings that holds the Human players hand
-			p2_hand, vector of strings that holds the CPU players hand
-			reset, bool that is used to know if players have the same hand
-			i, int for loop counter
-			j, int for loop counter
+		p1_hand, vector of strings that holds the Human players hand
+		p2_hand, vector of strings that holds the CPU players hand
+		reset, bool that is used to know if players have the same hand
+		i, int for loop counter
+		j, int for loop counter
 Algorithm:
-			1) Gets the hands of both players
-			2) Checks if both players have the same hand
-			3) If they arent the same return and do nothing
-			4) If they are the same, call the dealer deconstructor,
-			clear both players hands, create a new dealer obj, and pass
-			out the cards again
+		1) Gets the hands of both players
+		2) Checks if both players have the same hand
+		3) If they arent the same return and do nothing
+		4) If they are the same, call the dealer deconstructor,
+		clear both players hands, create a new dealer obj, and pass
+		out the cards again
 Assistance Received: None
 **********************************************************************/
 void Round::checkIfSameHand(Dealer a_dealer, Player* a_player1, Player*a_player2)
@@ -865,42 +862,42 @@ void Round::checkIfSameHand(Dealer a_dealer, Player* a_player1, Player*a_player2
 /**********************************************************************
 Function Name: p1Starts
 Purpose: Used when the human player is determined the starter and calls operations that
-			are used by the players to play the round
+are used by the players to play the round
 Parameters:
-			a_player1, pointer to a Player obj. Used to represent the Human player
-			a_player2, pointer to a Player obj. Used to represent the Computer player
-			roundCounter, int passed by value. Used to display what round is currently being
-			played
-			a_exit, string passed by value. Used to know if the player chose to exit the game
-			a_legal, bool passed by value. Used to denote if the play made was legal
-			a_deal, pointer to a Dealer obj. Used to access the deck
+		a_player1, pointer to a Player obj. Used to represent the Human player
+		a_player2, pointer to a Player obj. Used to represent the Computer player
+		roundCounter, int passed by value. Used to display what round is currently being
+		played
+		a_exit, string passed by value. Used to know if the player chose to exit the game
+		a_legal, bool passed by value. Used to denote if the play made was legal
+		a_deal, pointer to a Dealer obj. Used to access the deck
 Return Value: The type of exit from the round, if the player exited or the round
-				finished normally, int.
+finished normally, int.
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Show the layout, hands, capture piles, and next card
-			2) Brings up the player menu for the Human player
-			3) Calls the Human play function
-			4) Checks if the play the Human chose was either adding to the layout,
-			capturing three cards off the layout, or a regular pair capture
-			5) Calls function that removes the card from the Human player's hand
-			6) Calls function that draws the card at the top of the stock pile
-			and prints it to the screen
-			7) Calls function that checks if the stock card creates a stack, 
-			3 stack, or if it gets added to the layout
-			8) Checks if the CPU player still has cards in his hand,
-			if not end the round, else continue through to the CPUs turn
-			9) Show the layout, hands, capture piles, and next card
-			10) Brings up the player menu for the CPU player
-			11) Calls the CPU play function
-			12) Checks if the play the CPU chose was either adding to the layout,
-			capturing three cards off the layout, or a regular pair capture
-			13) Calls function that removes the card from the CPU player's hand
-			14) Calls function that draws the card at the top of the stock pile
-			and prints it to the screen
-			15) Calls function that checks if the stock card creates a stack, 
-			3 stack, or if it gets added to the layout
+		1) Show the layout, hands, capture piles, and next card
+		2) Brings up the player menu for the Human player
+		3) Calls the Human play function
+		4) Checks if the play the Human chose was either adding to the layout,
+		capturing three cards off the layout, or a regular pair capture
+		5) Calls function that removes the card from the Human player's hand
+		6) Calls function that draws the card at the top of the stock pile
+		and prints it to the screen
+		7) Calls function that checks if the stock card creates a stack, 
+		3 stack, or if it gets added to the layout
+		8) Checks if the CPU player still has cards in his hand,
+		if not end the round, else continue through to the CPUs turn
+		9) Show the layout, hands, capture piles, and next card
+		10) Brings up the player menu for the CPU player
+		11) Calls the CPU play function
+		12) Checks if the play the CPU chose was either adding to the layout,
+		capturing three cards off the layout, or a regular pair capture
+		13) Calls function that removes the card from the CPU player's hand
+		14) Calls function that draws the card at the top of the stock pile
+		and prints it to the screen
+		15) Calls function that checks if the stock card creates a stack, 
+		3 stack, or if it gets added to the layout
 Assistance Received: None
 **********************************************************************/
 int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std::string a_exit, bool a_legal, Dealer* a_deal)
@@ -993,48 +990,44 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 	checkStacks(a_player2);
 }
 
-/*
-	The p2Starts() function is used when player2 or the Computer player is determined the starter from the
-	goFirst() function.
-*/
 /**********************************************************************
 Function Name: p2Starts
 Purpose: Used when computer player is determined the starter
 Parameters:
-			a_player1, pointer to a Player obj. Used to represent the Human player
-			a_player2, pointer to a Player obj. Used to represent the Computer player
-			roundCounter, int passed by value. Used to display what round is currently being
-			played
-			a_exit, string passed by value. Used to know if the player chose to exit the game
-			a_legal, bool passed by value. Used to denote if the play made was legal
-			a_deal, pointer to a Dealer obj. Used to access the deck
+		a_player1, pointer to a Player obj. Used to represent the Human player
+		a_player2, pointer to a Player obj. Used to represent the Computer player
+		roundCounter, int passed by value. Used to display what round is currently being
+		played
+		a_exit, string passed by value. Used to know if the player chose to exit the game
+		a_legal, bool passed by value. Used to denote if the play made was legal
+		a_deal, pointer to a Dealer obj. Used to access the deck
 Return Value: The type of exit from the round, if the player exited or the round
-				finished normally, int.
+finished normally, int.
 Local Variables:
-			None
+		None
 Algorithm:
-			1) Show the layout, hands, capture piles, and next card
-			2) Brings up the player menu for the CPU player
-			3) Calls the CPU play function
-			4) Checks if the play the CPU chose was either adding to the layout,
-			capturing three cards off the layout, or a regular pair capture
-			5) Calls function that removes the card from the CPU player's hand
-			6) Calls function that draws the card at the top of the stock pile
-			and prints it to the screen
-			7) Calls function that checks if the stock card creates a stack, 
-			3 stack, or if it gets added to the layout
-			8) Checks if the Human player still has cards in his hand,
-			if not end the round, else continue through to the Humans turn
-			9) Show the layout, hands, capture piles, and next card
-			10) Brings up the player menu for the Human player
-			11) Calls the Human play function
-			12) Checks if the play the Human chose was either adding to the layout,
-			capturing three cards off the layout, or a regular pair capture
-			13) Calls function that removes the card from the Human player's hand
-			14) Calls function that draws the card at the top of the stock pile
-			and prints it to the screen
-			15) Calls function that checks if the stock card creates a stack, 
-			3 stack, or if it gets added to the layout
+		1) Show the layout, hands, capture piles, and next card
+		2) Brings up the player menu for the CPU player
+		3) Calls the CPU play function
+		4) Checks if the play the CPU chose was either adding to the layout,
+		capturing three cards off the layout, or a regular pair capture
+		5) Calls function that removes the card from the CPU player's hand
+		6) Calls function that draws the card at the top of the stock pile
+		and prints it to the screen
+		7) Calls function that checks if the stock card creates a stack, 
+		3 stack, or if it gets added to the layout
+		8) Checks if the Human player still has cards in his hand,
+		if not end the round, else continue through to the Humans turn
+		9) Show the layout, hands, capture piles, and next card
+		10) Brings up the player menu for the Human player
+		11) Calls the Human play function
+		12) Checks if the play the Human chose was either adding to the layout,
+		capturing three cards off the layout, or a regular pair capture
+		13) Calls function that removes the card from the Human player's hand
+		14) Calls function that draws the card at the top of the stock pile
+		and prints it to the screen
+		15) Calls function that checks if the stock card creates a stack, 
+		3 stack, or if it gets added to the layout
 Assistance Received: None
 **********************************************************************/
 int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std::string a_exit, bool a_legal, Dealer* a_deal)
@@ -1128,15 +1121,15 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 Function Name: TripleLayoutCap
 Purpose: Used to capture three cards off the layout that arent stacked
 Parameters:
-			a_player, pointer to a Player obj. Used to access the correct
-			players cards
+		a_player, pointer to a Player obj. Used to access the correct
+		players cards
 Return Value: None
 Local Variables:
-			i, int for loop counter
+		i, int for loop counter
 Algorithm:
-			1) Appends the second and third matches index to the threeStack string
-			2) Gets the card chosen by the player
-			3) Gets the layout card chosen by the player
+		1) Appends the second and third matches index to the threeStack string
+		2) Gets the card chosen by the player
+		3) Gets the layout card chosen by the player
 Assistance Received: None
 **********************************************************************/
 void Round::tripleLayoutCap(Player* a_player)
