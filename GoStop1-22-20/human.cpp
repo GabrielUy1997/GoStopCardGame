@@ -7,14 +7,33 @@ Human::~Human()
 
 /**********************************************************************
 Function Name: playTurn
-Purpose: 
+Purpose: Takes in the Human players inputs when they play their turn
 Parameters:
-
-Return Value: None
+		a_player, pointer to a Player obj. Represents the the current
+		player whos turn it is
+		a_table, vector of strings passed by value. The cards in the layout
+		a_stacks, vector of ints passed by value. Used 
+		to represent if there are any 3 stacks on the layout
+		a_tableCount, int passed by value. How many cards are in the layout
+		a_stackCount, int passed by value. Stacks in the layout
+Return Value: A string with the indexes of the card they wanna play
+from their hand and from the layout
 Local Variables:
-			None
+		playerHand, vector of strings. Used to temporaritly hold the 
+		players hand
 Algorithm:
-			1)
+			1) Checks if the player has any available plays, if not
+			then it asks what card they would like to add to the layout
+			and returns that selection
+			2) Asks what card the player wants to play from their hand
+			3) Asks what card they would like to play on the layout
+			4) If the player didnt ask for help then check for any 
+			possible 3 capures on the board
+			5) If 3 of the same card are found then make then add the
+			index of all 3 of the cards to the playPosition string
+			6) If there are no 3 captures on the board then the play is 
+			just the 2 indexes chosen by the player
+			7) Return the playPostion string
 Assistance Received: None
 **********************************************************************/
 std::string Human::playTurn(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_tableCount, int a_stackCount)
@@ -31,7 +50,7 @@ std::string Human::playTurn(Player* a_player, std::vector<std::string> a_table, 
 	}
 	playPositon = " ";
 	//shows table
-	table(a_table,a_stacks, a_tableCount, a_stackCount); 
+	table(a_table,a_tableCount); 
 	std::cout << "Player hand:\n";
 	a_player->showHand();
 	dashedLine();
@@ -67,15 +86,28 @@ std::string Human::playTurn(Player* a_player, std::vector<std::string> a_table, 
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: menu
+Purpose: The menu the Human player sees and uses to play the game
 Parameters:
-
-Return Value: None
+		a_player, pointer to a Player obj. Represents the Human player
+		a_player2, pointer to a Player obj. Represents the Computer player
+		a_table, vector of strings passed by value. The cards in the layout
+		a_stacks, vector of ints passed by value. Used to represent which cards
+		are 3 stacks
+		a_round, int passed by value. The current round
+		a_score1, int passed by value. The Human player's score
+		a_score2, int passed by value. The Computer player's score
+		a_stock, vector of strings passed by value. The vector holding the
+		cards remaining in the stock pile
+		a_next, string passed by value. The current player
+Return Value: Their choice in the menu, a string
 Local Variables:
 			None
 Algorithm:
-			1)
+			1) Asks what the player would like to do
+			2) Takes in the input and either calls the 
+			serialize function to save the game or return
+			play, help, or exit
 Assistance Received: None
 **********************************************************************/
 std::string Human::menu(Player* a_player, Player* a_player2, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_round, int a_score1, int a_score2, std::vector<std::string> a_stock, std::string a_next)
@@ -114,18 +146,20 @@ std::string Human::menu(Player* a_player, Player* a_player2, std::vector<std::st
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: table
+Purpose: Show the layout cards
 Parameters:
-
+		a_table, vector of strings. The layout cards
+		a_tableCount, int. Number of cards in the layout
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1)
+		1) Loops through the vector holding the layout cards and prints 
+		them
 Assistance Received: None
 **********************************************************************/
-void Human::table(std::vector<std::string> a_table, std::vector <int> a_stacks, int a_tableCount, int a_stackCount)
+void Human::table(std::vector<std::string> a_table, int a_tableCount)
 {
 	std::cout << "Layout cards:\n";
 	for (int i = 0; i < a_tableCount; i++)
@@ -136,15 +170,21 @@ void Human::table(std::vector<std::string> a_table, std::vector <int> a_stacks, 
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: handSelect
+Purpose: Used for when the player is chosing the card they 
+want to play from their hand
 Parameters:
-
+		a_player, pointer to a player obj. Used to access the
+		correct players hand
 Return Value: None
 Local Variables:
-			None
+		tempHand, vector of strings. Holds the players 
+		cards temporarily
 Algorithm:
-			1)
+			1) Asks what card the player wants to play
+			2) The player enters the index
+			3) The input is then stored in the handPosition
+			variable
 Assistance Received: None
 **********************************************************************/
 void Human::handSelect(Player* a_player)
@@ -172,15 +212,18 @@ void Human::handSelect(Player* a_player)
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: layoutSelect
+Purpose: Used for when the player is selecting where they are gonna 
+play their card in the layout
 Parameters:
-
+		a_tableCount, int. The number of cards in the layout
 Return Value: None
 Local Variables:
-			None
+		None
 Algorithm:
-			1)
+			1) Asks the player what index they would like to play to
+			2) Takes in the input
+			3) Stores the input in the tablePosition variable
 Assistance Received: None
 **********************************************************************/
 void Human::layoutSelect(int a_tableCount)
@@ -205,10 +248,12 @@ void Human::layoutSelect(int a_tableCount)
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: helpMenu
+Purpose: Used when the Human player selects help in the menu
 Parameters:
-
+		a_player, pointer to a Player obj.
+		a_table, vector of strings passed by value.
+		a_stacks, vector of ints passed by value.
 Return Value: None
 Local Variables:
 			None

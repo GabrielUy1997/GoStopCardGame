@@ -7,7 +7,7 @@ public:
 	~Human();
 	std::string playTurn(Player*, std::vector<std::string>, std::vector <int>, int, int);
 	std::string menu(Player*, Player*, std::vector<std::string>, std::vector <int>, int, int, int, std::vector<std::string>, std::string);
-	void table(std::vector<std::string>, std::vector <int>, int, int);
+	void table(std::vector<std::string>, int);
 	void handSelect(Player*);
 	void layoutSelect(int);
 	void helpMenu(Player*, std::vector<std::string>, std::vector <int>);
