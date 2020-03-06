@@ -31,6 +31,18 @@ std::string Cpu::playTurn(Player* a_player, std::vector<std::string> a_table, st
 	return selection;
 }
 
+/**********************************************************************
+Function Name:
+Purpose:
+Parameters:
+
+Return Value: None
+Local Variables:
+			None
+Algorithm:
+			1)
+Assistance Received: None
+**********************************************************************/
 std::string Cpu::moveSelector(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks) //selects the card the CPU will play
 {
 	std::vector<std::string> cpuHand;
