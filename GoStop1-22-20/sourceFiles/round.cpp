@@ -433,20 +433,43 @@ void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index
 		a_player->addCapture(capType, tableCards[a_index], 4, threeInLay, threeStack);
 		std::cout << "added to capture pile\n";
 		std::string temp;
-		int j = 0;
-		for (int i = 1; i < 4; i++)
+		//If there are 2 matches in the layout and the the stock card matches the played card
+		if (stockCap3 == true)
 		{
-			temp = play[i];
-			a_index = stoi(temp);
-			if (i > 1)
+			int j = 0;
+			for (int i = 1; i < 3; i++)
 			{
-				a_index -= j;
+				temp = play[i];
+				a_index = stoi(temp);
+				if (i > 1)
+				{
+					a_index -= j;
+				}
+				tableCards.erase(tableCards.begin() + a_index);
+				tableStacks.erase(tableStacks.begin() + a_index);
+				tableCounter--;
+				stackCounter--;
+				j++;
 			}
-			tableCards.erase(tableCards.begin() + a_index);
-			tableStacks.erase(tableStacks.begin() + a_index);
-			tableCounter--;
-			stackCounter--;
-			j++;
+		}
+		//capturing 3 cards from the layout
+		else
+		{
+			int k = 0;
+			for (int i = 1; i < 4; i++)
+			{
+				temp = play[i];
+				a_index = stoi(temp);
+				if (i > 1)
+				{
+					a_index -= k;
+				}
+				tableCards.erase(tableCards.begin() + a_index);
+				tableStacks.erase(tableStacks.begin() + a_index);
+				tableCounter--;
+				stackCounter--;
+				k++;
+			}
 		}
 	}
 	else if (tableStacks[a_index] == 2)
@@ -479,6 +502,7 @@ void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index
 		++++tableStacks[a_index];
 	}
 	threeInLay = false;
+	stockCap3 = false;
 	threeStack = " ";
 }
 
@@ -749,7 +773,23 @@ void Round::checkStacks(Player* a_player)
 	//if player card isnt being added to layout
 	if (addToLay == false) 
 	{
+		for (unsigned int i = 0; i < tableCards.size(); i++)
+		{
+			if (cardDrawn[0] == tableCards[i][0])
+			{
+				tableMatches.push_back(i);
+			}
+		}
+		if (cardsStacking == 2 && tableMatches.size() == 2)
+		{
+			std::cout << "The stock card " << cardDrawn << " matches the card played and 2 cards on the layout: " << p_cardChosen << " " << tableCards[tableMatches[0]] << " " << tableCards[tableMatches[1]] << "\n";
+			threeStack = cardDrawn + " " + tableCards[tableMatches[1]] + " ";
+			play = play + std::to_string(tableMatches[1]);
+			threeInLay = true;
+			stockCap3 = true;
+		}
 		stacksOperatons(p_cardChosen, cardDrawn, index, a_player, cardsStacking);
+		tableMatches.clear();
 	}
 	//getting the indexes of all the matches with the stock card on the layout
 	if (cardsStacking == 1 || cardsStacking == 0)
@@ -767,7 +807,7 @@ void Round::checkStacks(Player* a_player)
 		}
 	}
 	//if there is only one match
-	if (tableMatches.size() == 1)
+	if (tableMatches.size() == 1 && cardsStacking != 2)
 	{
 		addToLay = false;
 		//if completeing a 3 stack
@@ -783,7 +823,7 @@ void Round::checkStacks(Player* a_player)
 		stockMatchIndex = tableMatches[0];
 	}
 	//if there is more than one match
-	else if (tableMatches.size() >= 2)
+	else if (tableMatches.size() >= 2 && cardsStacking != 2)
 	{
 		addToLay = false;
 		stockMatchIndex = a_player->stockMatchMenu(tableMatches, tableCards, cardDrawn, stockMatchIndex);
