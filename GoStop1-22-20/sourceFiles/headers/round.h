@@ -32,7 +32,7 @@ public:
 private:
 	int starter, hand, index, stockMatchIndex, winner, tableCounter, stackCounter, cardsStacking, score1, score2;
 	std::string play, tempCard, tempTable, threeStack;
-	bool addToLay, threeInLay;
+	bool addToLay, threeInLay, stockCap3;
 	std::string nextPlayer;
 	std::string cardDrawn;
 	std::string p_cardChosen;
