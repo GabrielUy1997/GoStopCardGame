@@ -410,16 +410,17 @@ Local Variables:
 		temp, string that temporarily holds the index of the card currently being used
 Algorithm:
 		1) Gets the value of the card played from the players hand
-		2) Checks if there were 3 of the same card were detected in the layout,
+		2) Checks if the stock card and the card played match 2 cards in the layout
+		3) Checks if there were 3 of the same card were detected in the layout,
 		if there was then a full stack is created and added to the current players
 		capture pile. Then each one is removed from the layout
-		3) If the tableStacks of the index chosen is 2 then the player is playing 
+		4) If the tableStacks of the index chosen is 2 then the player is playing 
 		on a triple stack and they capture a full stack. The full stack is added to
 		their capture pile then removed from the layout
-		4) If the stackNum is 1 then the player is capturing a half stack, the card
+		5) If the stackNum is 1 then the player is capturing a half stack, the card
 		is then removed from the layout and the half stack is added to the capture
 		pile
-		5) If it did not fit the criteria of any of the previous steps then
+		6) If it did not fit the criteria of any of the previous steps then
 		a 3 stack is created on the layout
 Assistance Received: None
 **********************************************************************/
@@ -736,7 +737,9 @@ Algorithm:
 		1) Checks if it is possible to play a card and capture 3 layout cards,
 		if not then it is still possible card can be added to the layout
 		2) Checks if the card played is the same as the stock card, if it is
-		then stack them meaning that it will make a 3 stack
+		then stack them meaning that it will make a 3 stack, if the stock card
+		does match the card played check if they can capture 2 cards that match 
+		in the layout
 		3) If the stock and played card arent the same then 3 stack isnt created
 		4) If the card that was played isnt being added to the layout then continue
 		and call the stacksOperations function

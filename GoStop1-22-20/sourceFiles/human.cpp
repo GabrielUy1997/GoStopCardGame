@@ -251,14 +251,29 @@ void Human::layoutSelect(int a_tableCount)
 Function Name: helpMenu
 Purpose: Used when the Human player selects help in the menu
 Parameters:
-		a_player, pointer to a Player obj.
-		a_table, vector of strings passed by value.
-		a_stacks, vector of ints passed by value.
+		a_player, pointer to a Player obj. Used to know what player is 
+		currently being used
+		a_table, vector of strings passed by value. The layout cards
+		a_stacks, vector of ints passed by value. Stacks in the layout
 Return Value: None
 Local Variables:
-			None
+		playerHand, vector of strings. Players hand
+		capPair, bool. If there are matching cards in the players
+		capture pile
+		h, int. Hand index
+		t, int. Table index
+		i and j, for loop iterator
 Algorithm:
-			1)
+		1) Gets the players hand
+		2) Checks for 3 matching cards in the layout
+		3) If the help function hasnt suggested a play yet,
+		look through the players hand and the players capture
+		pile and look for any matches
+		4) If any matches are found then recommend they play the card
+		that matches, if no matches are found in the capture pile
+		then recommend any matches found in the layout and the hand,
+		and if none are found then tell the player to add a card to 
+		the layout
 Assistance Received: None
 **********************************************************************/
 void Human::helpMenu(Player* a_player, std::vector<std::string> a_table, std::vector <int> a_stacks)
@@ -304,15 +319,26 @@ void Human::helpMenu(Player* a_player, std::vector<std::string> a_table, std::ve
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: stockMatchMenu
+Purpose: Used for matching the stock cards with cards on the layout
 Parameters:
-
-Return Value: None
+		a_matchList, vector of ints passed by value. The list of 
+		matches in the layout
+		a_list, vector of strings passed by value. The layout
+		cards
+		a_cardDrawn, string passed by value. The stock card
+		a_stockIndex, int passed by value. Index of the matching
+		card
+Return Value: The index of the card on the layout that was selected,
+		int
 Local Variables:
-			None
+		a_input, int. Used to collect the users input
+		i, for loop iterator
 Algorithm:
-			1)
+		1) Prints the list of matches found for the stock card
+		2) Asks the player which one they would like to capture
+		3) Prints what they are capturing and returns their
+		selection
 Assistance Received: None
 **********************************************************************/
 int Human::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string> a_list, std::string a_cardDrawn, int a_stockIndex)
@@ -343,15 +369,22 @@ int Human::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string>
 }
 
 /**********************************************************************
-Function Name:
-Purpose:
+Function Name: triples
+Purpose: Searches for any 3 cards with the same value in the layout
+that can be captured by the player
 Parameters:
-
+		a_playerHand, vector of strings. The players hand
+		a_stacks, vector of ints. Stacks on the layout
+		a_table, vector of strings. The table cards
 Return Value: None
 Local Variables:
 			None
 Algorithm:
-			1)
+			1) Compares the players hand to the layout
+			2) If the player asked for help then it prints the 
+			recommendation
+			3) Searches the layout to find any 3 cards matching the 
+			player card
 Assistance Received: None
 **********************************************************************/
 void Human::triples(std::vector<std::string> a_playerHand, std::vector<int> a_stacks, std::vector<std::string> a_table)

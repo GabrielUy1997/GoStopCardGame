@@ -214,7 +214,7 @@ Algorithm:
 		1) Asks for the file the user wants to load
 		2) Open the file and read the file, take in the data
 		and store it into the correct variables
-Assistance Received: None
+Assistance Received: https://www.geeksforgeeks.org/cpp-program-read-file-word-word/ 2/10/20
 **********************************************************************/
 void Game::loadGame()
 {
@@ -229,6 +229,11 @@ void Game::loadGame()
 		if (found != std::string::npos)
 		{
 			file.open(fileName.c_str());
+			if (!file.is_open())
+			{
+				std::cout << "File doesn't exist, input a valid filename" << "\n";
+				loadGame();
+			}
 			while (file >> word)
 			{
 				if (word == "Round:")
@@ -348,10 +353,6 @@ void Game::loadGame()
 				}
 			}
 			break;
-		}
-		else
-		{
-			std::cout << "invalid file\n";
 		}
 	} while (true);
 }
