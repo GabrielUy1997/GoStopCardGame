@@ -327,7 +327,8 @@ Assistance Received: None
 **********************************************************************/
 Dealer Round::passOutCards(Dealer a_dealer, Player* a_player1, Player* a_player2)
 {
-	for (int i = 0; i < 28; i++) //dealing the cards in the specified order 5-5-4-5-5-4
+	//dealing the cards in the specified order 5-5-4-5-5-4
+	for (int i = 0; i < 28; i++) 
 	{
 		if (i < 5)
 		{
@@ -382,7 +383,8 @@ Assistance Received: None
 **********************************************************************/
 bool Round::isLegal(std::string a_playerCard, std::string a_tableCard) //verifying if chosen move is legal
 {
-	if (a_playerCard[0] == a_tableCard[0]) //if values are equal then its a legal play
+	//if values are equal then its a legal play
+	if (a_playerCard[0] == a_tableCard[0]) 
 	{
 		return true;
 	}
@@ -473,6 +475,7 @@ void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index
 			}
 		}
 	}
+	//if a 3 stack was completed
 	else if (tableStacks[a_index] == 2)
 	{
 		std::cout << "Full stack created, you get a point!\n";
@@ -483,6 +486,7 @@ void Round::stacksOperatons(std::string a_card, std::string a_stock, int a_index
 		tableCounter--;
 		stackCounter--;
 	}
+	//if a normal pair was captured
 	else if (stackNum == 1)
 	{
 		std::cout << "Half stack captured!\n";
@@ -675,7 +679,8 @@ Assistance Received: None
 **********************************************************************/
 void Round::noPlay(Player* a_player)
 {
-	tempCard = play[0];//hand index
+	//hand index
+	tempCard = play[0];
 	hand = stoi(tempCard);
 	p_cardChosen = a_player->pullCard(hand);
 }
@@ -960,11 +965,13 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		{
 			a_player1->helpMenu(a_player1, tableCards, tableStacks);
 		}
-		play = a_player1->playTurn(a_player1, tableCards, tableStacks, tableCounter, stackCounter); //returns the index of the card the player wants to play in the hand and the index of the layout they want to play to
+		//returns the index of the card the player wants to play in the hand and the index of the layout they want to play to
+		play = a_player1->playTurn(a_player1, tableCards, tableStacks, tableCounter, stackCounter);
 		if (play[0] == 'x')
 		{
 			std::cout << "Invalid play\n";
 		}
+		//if there was no possible play for the player
 		else if (play[1] == NULL)
 		{
 			noPlay(a_player1);
@@ -972,6 +979,7 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 			addToLay = true;
 			break;
 		}
+		//capturing 3 cards in the layout
 		else if (play.length() == 4)
 		{
 			tripleLayoutCap(a_player1);
@@ -988,8 +996,10 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 			a_legal = isLegal(p_cardChosen, p_tableChosen);
 		}
 	} while (a_legal == false);
-	a_player1->removeCard(hand); //removes card from players hand after verification
-	cardDrawn = a_deal->dealCard(); //pulling the stock card from the stockpile
+	//removes card from players hand after verification
+	a_player1->removeCard(hand); 
+	//pulling the stock card from the stockpile
+	cardDrawn = a_deal->dealCard();
 	std::cout << "The stock Card played is:" << cardDrawn << "\n";
 	checkStacks(a_player1);
 	if (a_player2->returnHand().size() == 0)
@@ -1007,6 +1017,7 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		return -1;
 	}
 	play = a_player2->playTurn(a_player2, tableCards, tableStacks, tableCounter, stackCounter);
+	//if there was no possible play for the player
 	if (play[1] == NULL)
 	{
 		dashedLine();
@@ -1016,6 +1027,7 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		addToLay = true;
 		threeInLay = false;
 	}
+	//capturing 3 cards in the layout
 	else if (play.length() == 4)
 	{
 		tripleLayoutCap(a_player2);
@@ -1028,7 +1040,8 @@ int Round::p1Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		threeInLay = false;
 	}
 	a_player2->removeCard(hand);
-	cardDrawn = a_deal->dealCard(); //pulling the stock card from the stockpile
+	//pulling the stock card from the stockpile
+	cardDrawn = a_deal->dealCard(); 
 	std::cout << "The stock Card played is:" << cardDrawn << "\n";
 	checkStacks(a_player2);
 }
@@ -1085,6 +1098,7 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		return -1;
 	}
 	play = a_player2->playTurn(a_player2, tableCards, tableStacks, tableCounter, stackCounter);
+	//if there was no possible play for the player
 	if (play[1] == NULL)
 	{
 		dashedLine();
@@ -1093,6 +1107,7 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		addToLayout(p_cardChosen);
 		addToLay = true;
 	}
+	//capturing 3 cards in the layout
 	else if (play.length() == 4)
 	{
 		tripleLayoutCap(a_player2);
@@ -1104,14 +1119,16 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		addToLay = false;
 	}
 	a_player2->removeCard(hand);
-	cardDrawn = a_deal->dealCard(); //pulling the stock card from the stockpile
+	//pulling the stock card from the stockpile
+	cardDrawn = a_deal->dealCard();
 	std::cout << "The stock Card played is:" << cardDrawn << "\n";
 	checkStacks(a_player2);
 	if (a_player1->returnHand().size() == 0)
 	{
 		return 1;
 	}
-	do //start p1 turn
+	//start p1 turn
+	do 
 	{
 		showStats(a_player1, a_player2, roundCounter);
 		a_deal->topCard();
@@ -1131,6 +1148,7 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		{
 			std::cout << "Invalid play, please follow the help function\n";
 		}
+		//if there was no possible play for the player
 		else if (play[1] == NULL)
 		{
 			noPlay(a_player1);
@@ -1138,6 +1156,7 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 			addToLay = true;
 			break;
 		}
+		//capturing 3 cards in the layout
 		else if (play.length() == 4)
 		{
 			tripleLayoutCap(a_player1);
@@ -1154,8 +1173,10 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 			a_legal = isLegal(p_cardChosen, p_tableChosen);
 		}
 	} while (a_legal == false);
-	a_player1->removeCard(hand); //removes card from players hand after verification
-	cardDrawn = a_deal->dealCard(); //pulling the stock card from the stockpile
+	//removes card from players hand after verification
+	a_player1->removeCard(hand)
+	//pulling the stock card from the stockpile
+	cardDrawn = a_deal->dealCard();
 	std::cout << "The stock Card played is:" << cardDrawn << "\n";
 	checkStacks(a_player1);
 }

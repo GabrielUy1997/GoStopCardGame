@@ -79,6 +79,7 @@ std::string Cpu::moveSelector(Player* a_player, std::vector<std::string> a_table
 	cpuHand = a_player->returnHand();
 	playPositon = checkForTriple(a_player, a_table, a_stacks, cpuHand);
 	dashedLine();
+	//Collecting 3 cards off the layout
 	if (playPositon.length() == 4)
 	{
 		handpos = playPositon[0];
@@ -97,6 +98,7 @@ std::string Cpu::moveSelector(Player* a_player, std::vector<std::string> a_table
 	{
 		handpos = playPositon[0];
 		tablepos = playPositon[1];
+		//if the table position index in the double digits (eg. 10 or 12)
 		if (playPositon[2] != NULL)
 		{
 			tablepos += playPositon[2];
@@ -112,6 +114,8 @@ std::string Cpu::moveSelector(Player* a_player, std::vector<std::string> a_table
 	int t;
 	for (unsigned int i = 0; i < cpuHand.size(); i++)
 	{
+		//checks for any pairs that can be captured to
+		//complete a pair in the capture pile
 		capPair = isInCapPile(a_player, cpuHand[i][0]);
 		for (unsigned int j = 0; j < a_table.size(); j++)
 		{
@@ -163,6 +167,7 @@ std::string Cpu::checkForTriple(Player* a_player, std::vector<std::string> a_tab
 	{
 		for (unsigned int j = 0; j < a_table.size(); j++)
 		{
+			//if there is a 3 stack in the index
 			if (a_stacks[j] == 2 && a_hand[i][0] == a_table[j][0])
 			{
 				play = std::to_string(i) + std::to_string(j);
@@ -172,6 +177,7 @@ std::string Cpu::checkForTriple(Player* a_player, std::vector<std::string> a_tab
 			{
 				count++;
 				foundTrip.push_back(std::to_string(j));
+				//if 3 of the same value card is found
 				if (count >= 3)
 				{
 					play = std::to_string(i) + foundTrip[0] + foundTrip[1] + foundTrip[2];
@@ -266,6 +272,7 @@ int Cpu::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string> a
 	std::cout << "Computer deciding which card on layout to pair with stock card...\n";
 	for (unsigned int i = 0; i < a_matchList.size(); i++)
 	{
+		//if there is a 3 stack
 		if (a_list[a_matchList[i]][2] == '-')
 		{
 			std::cout << "The Computer used the stock card to a pair on the layout with " << a_cardDrawn << " and " << a_list[a_matchList[i]] << "\n";

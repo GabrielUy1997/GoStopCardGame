@@ -59,18 +59,23 @@ std::string Human::playTurn(Player* a_player, std::vector<std::string> a_table, 
 	selection = " ";
 	layoutSelect(a_tableCount);
 	std::vector<std::string> playerHand = a_player->returnHand();
+	// if the player didnt select help in the menu
 	if (menuInput != "3")
 	{
 		triples(playerHand, a_stacks, a_table);
 	}
+	// if there were 3 matching cards in the layout
 	if (triple == true)
 	{
 		std::string i = foundTrip.at(foundTrip.size() - 4);
 		char f = foundTrip.back()[0];
+		// if the player didnt select the correct indexes to capture the 3 cards
 		if (handPosition != foundTrip[(foundTrip.size() - 1)] || tablePosition != foundTrip[(foundTrip.size() - 4)])
 		{
 			playPositon = 'x';
 		}
+		// if the hand selection matches the value of the 3 cards and the table position selected
+		// the one recommended
 		else if (handPosition[0] == f && tablePosition[0] == i[0])
 		{
 			playPositon = (foundTrip.at(foundTrip.size() - 1)) + (foundTrip.at(foundTrip.size() - 4)) + (foundTrip.at(foundTrip.size() - 3)) + (foundTrip.at(foundTrip.size() - 2));
@@ -199,6 +204,7 @@ void Human::handSelect(Player* a_player)
 		std::cin >> selection;
 		input = stoi(selection);
 		input--;
+		// Makes sure input is a valid selection
 		if (input < tempCount && input >= 0)
 		{
 			handPosition = std::to_string(input);
@@ -235,6 +241,7 @@ void Human::layoutSelect(int a_tableCount)
 		std::cin >> selection;
 		input = stoi(selection);
 		input--;
+		// make sure input was a valid selection
 		if (input < a_tableCount && input >= 0)
 		{
 			tablePosition = std::to_string(input);
@@ -289,6 +296,7 @@ void Human::helpMenu(Player* a_player, std::vector<std::string> a_table, std::ve
 	{
 		for (unsigned int i = 0; i < playerHand.size(); i++)
 		{
+			//searches capture piles to see if any pairs can be completed
 			capPair = isInCapPile(a_player, playerHand[i][0]);
 			for (unsigned int j = 0; j < a_table.size(); j++)
 			{
@@ -393,6 +401,7 @@ void Human::triples(std::vector<std::string> a_playerHand, std::vector<int> a_st
 	{
 		for (unsigned int j = 0; j < a_table.size(); j++)
 		{
+			//if there are any triple stacks that can be captured
 			if (a_stacks[j] == 2 && a_playerHand[i][0] == a_table[j][0])
 			{
 				if (menuInput == "3")
@@ -402,10 +411,12 @@ void Human::triples(std::vector<std::string> a_playerHand, std::vector<int> a_st
 					return;
 				}
 			}
+			//if there are any 3 seperate cards that can be captured
 			else if (a_table[j][0] == a_playerHand[i][0])
 			{
 				count++;
 				foundTrip.push_back(std::to_string(j));
+				//if 3 cards are found
 				if (count >= 3)
 				{
 					foundTrip.push_back(std::to_string(i));

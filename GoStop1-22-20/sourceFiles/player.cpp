@@ -234,7 +234,7 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 	int combineIndex = 0;
 	int stackCount = 0;
 	std::string capturedStack;
-	//4 stack
+	//Capturing 4 stacks
 	if (a_num == 4) 
 	{
 		roundScore++;
@@ -249,7 +249,7 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 			return;
 		}
 	}
-	//2 stack
+	//Capturing 2 stacks
 	else if (a_num == 2)
 	{
 		for (unsigned int i = 0; i < capturePile.size(); i++)
@@ -262,6 +262,7 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 				{
 					stackCount++;
 				}
+				//combining captured pair with a matching pair in the layout
 				if (stackCount == 2 && capturePile[i].length() < 7)
 				{
 					std::cout << "Your 2 pairs of " << a_capt[0] << " cards combine to a 4 stack and give you a point!" << "\n";
@@ -282,7 +283,7 @@ void Player::addCapture(std::string a_capt, std::string a_card, int a_num, bool 
 		}
 	}
 	//capturedStack = std::to_string(a_num);
-
+	//if it is a 3 stack being captured
 	if (a_card[2] == '-')
 	{
 		a_card[2] = ' ';
@@ -437,7 +438,7 @@ Algorithm:
 		then either creates one or saves to an existing one
 		2) Saves both players scores, hands, and capture piles, the layout,
 		round number, the stock pile, and whos turn the game was saved on
-Assistance Received:https://www.geeksforgeeks.org/file-handling-c-classes/
+Assistance Received:https://www.geeksforgeeks.org/file-handling-c-classes/ 2/12/20
 **********************************************************************/
 void Player::serialize(Player* a_player, Player* a_player2, std::vector<std::string> a_table, std::vector <int> a_stacks, int a_round, int a_score1, int a_score2, std::vector<std::string> a_stock, std::string a_next)
 {
@@ -547,6 +548,7 @@ int Player::stockMatchMenu(std::vector<int> a_matchList, std::vector<std::string
 		std::cout << "\nWhich card would you like to stack on?: ";
 		std::cin >> a_input;
 		a_input--;
+		//Makes sure it is a valid entry
 		if (a_input < a_matchList.size() || a_input >= 0)
 		{
 			std::cout << "The stock card created a pair on the layout with " << a_cardDrawn << " and " << a_list[a_matchList[a_input]] << "\n";
@@ -692,7 +694,8 @@ void Player::loadRoundScore()
 	std::vector<int> stackIndexes(14, 0);
 	for (unsigned int i = 0; i < capturePile.size(); i++)
 	{
-		match = capturePile[i][0];//gets the type of card in the index of capPile
+		//gets the type of card in the index of capPile
+		match = capturePile[i][0];
 		if (match == "X")
 		{
 			match = "10";
@@ -709,7 +712,8 @@ void Player::loadRoundScore()
 		{
 			match = "13";
 		}
-		stackCount = stoi(match); //converts it to int so it can be added to the list of that type
+		//converts it to int so it can be added to the list of that type
+		stackCount = stoi(match); 
 		stackIndexes[stackCount]++;
 	}
 	for (unsigned int j = 0; j < stackIndexes.size(); j++)
