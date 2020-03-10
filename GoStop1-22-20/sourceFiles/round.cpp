@@ -1174,7 +1174,7 @@ int Round::p2Starts(Player* a_player1, Player* a_player2, int roundCounter, std:
 		}
 	} while (a_legal == false);
 	//removes card from players hand after verification
-	a_player1->removeCard(hand)
+	a_player1->removeCard(hand);
 	//pulling the stock card from the stockpile
 	cardDrawn = a_deal->dealCard();
 	std::cout << "The stock Card played is:" << cardDrawn << "\n";
