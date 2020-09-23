@@ -1,2 +1,2 @@
 # GoStop
-C++ Program for my Organization of programming lanugues course
+C++ Program for my Organization of programming languages course
